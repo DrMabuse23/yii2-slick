@@ -1,0 +1,19 @@
+{
+	"name":  "drmabuse/yii2-slick-carousel",
+	"description": "the last carousel you'll ever need",
+	"version": "0.0.1",
+	"type": "yii2-extension",
+	"keywords": ["yii2","extension","js-carousel","responsive"],
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Pascal Brewing",
+			"email": "pascalbrewing@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"drmabuse\\slick\\": ""
+		}
+	}
+}
