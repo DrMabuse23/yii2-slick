@@ -40,6 +40,8 @@ class SlickWidget extends Widget{
      * @autoplay,boolean, default: false,,Enables Autoplay,
      * @autoplaySpeed,int(ms), default: 3000 ,Autoplay Speed in milliseconds,
      * @arrows,boolean, default: true,Prev/Next Arrows,
+	 * @centerMode, boolean	false,Enables centered view with partial prev/next slides. Use with odd numbered slidesToShow counts.
+	 * @centerPadding,int 50,Side padding when in center mode
      * @cssEase,string, default: 'ease',CSS3 Animation Easing,
      * @dots,boolean, default: false,Show dot indicators,
      * @draggable,boolean, default: true,Enable mouse dragging,
