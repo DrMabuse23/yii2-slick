@@ -46,8 +46,11 @@ class SlickWidget extends Widget{
      * @fade,boolean, default: false,Enable fade,
      * @easing,string, default: 'linear',Add easing for jQuery animate. Use with easing libraries or default easing methods,
      * @infinite,,boolean, default: true,Infinite loop sliding,
+	 * @lazyLoad,string	'ondemand',Set lazy loading technique. Accepts 'ondemand' or 'progressive'.
      * @onBeforeChange,function, default: null,Before slide callback,
      * @onAfterChange,function, default: null,After slide callback,
+	 * @onInit,function	null,Callback that fires after first initialization
+	 * @onReInit,function	null,Callback that fires after every re-initialization
      * @pauseOnHover,boolean, default: true,Pause Autoplay On Hover,
      * @placeholders,,boolean, default: true,,Enable placeholders to enforce slidesToScroll with uneven
      * slide counts. (Doesn't work with infinite: true),
