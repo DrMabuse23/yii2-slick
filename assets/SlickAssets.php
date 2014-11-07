@@ -35,12 +35,12 @@ use yii\web\AssetBundle;
  */
 class SlickAssets extends AssetBundle{
 
-    public $sourcePath = '@drmabuse/slick/web/';
+    public $sourcePath = '@bower/slick';
     public $css = [
-        'bower_components/slick-carousel/slick/slick.css'
+        'slick/slick.css'
     ];
     public $js = [
-        "bower_components/slick-carousel/slick/slick.min.js",
+        "slick/slick.min.js",
     ];
 
     public $depends = [
