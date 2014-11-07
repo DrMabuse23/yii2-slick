@@ -35,7 +35,7 @@ use yii\web\AssetBundle;
  */
 class SlickAssets extends AssetBundle{
 
-    public $sourcePath = '@bower/slick';
+    public $sourcePath = '@bower/slick-carousel';
     public $css = [
         'slick/slick.css'
     ];
