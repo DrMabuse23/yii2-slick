@@ -11,6 +11,9 @@
 			"email": "pascalbrewing@gmail.com"
 		}
 	],
+	"require":{
+		"bower-asset/slick-carousel":"@stable"
+	},
 	"autoload": {
 		"psr-4": {
 			"drmabuse\\slick\\": ""
