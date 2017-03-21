@@ -15,10 +15,13 @@ The yii2 widget to the fantastic slick-carousel. This widget generate you the on
 
 ###Using
 
-~~~
+```php
 
-	\drmabuse\slick\SlickWidget::widget([
-		'container' => '.single-item',
+    <?php
+	\drmabuse\slick\SlickWidget::begin([
+	    'htmlOptions' => [
+	        'class' => ['slider', 'single-item'],
+	    ],
 		'settings'  => [
 			'slick' => [
 				'infinite'      =>  true,
@@ -44,13 +47,16 @@ The yii2 widget to the fantastic slick-carousel. This widget generate you the on
 		]
 	]);
 
-    <div class="slider single-item">
-        <div><h3>1</h3></div>
-        <div><h3>2</h3></div>
-        <div><h3>3</h3></div>
-        <div><h3>4</h3></div>
-        <div><h3>5</h3></div>
-        <div><h3>6</h3></div>
-    </div>
-
-~~~
+    ?>
+    
+    <div><h3>1</h3></div>
+    <div><h3>2</h3></div>
+    <div><h3>3</h3></div>
+    <div><h3>4</h3></div>
+    <div><h3>5</h3></div>
+    <div><h3>6</h3></div>
+    
+    <?php 
+    \drmabuse\slick\SlickWidget::end();
+    ?>
+```
