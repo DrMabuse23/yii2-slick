@@ -5,15 +5,10 @@ yii2-slick
 
 The yii2 widget to the fantastic slick-carousel. This widget generate you the only the javascript.
 
-###Installation Composer
+### Installation Composer
     drmabuse/yii2-slick-carousel:"*"
 
-### Installation Assets Bower
-    cd vendor/drmabuse/yii2-slick-carousel/web
-
-    bower install
-
-###Using
+### Using
 
 ```php
 
