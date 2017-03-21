@@ -27,32 +27,33 @@ namespace drmabuse\slick;
 
 use drmabuse\slick\assets\SlickAssets;
 use yii\base\Widget;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\web\JsExpression;
 use yii\web\View;
 
 class SlickWidget extends Widget{
 
-    public $container   = '.slick';
+    public $htmlOptions;
 
     /**
      * @accessibility,boolean, default: true,Enables tabbing and arrow key navigation,
      * @autoplay,boolean, default: false,,Enables Autoplay,
      * @autoplaySpeed,int(ms), default: 3000 ,Autoplay Speed in milliseconds,
      * @arrows,boolean, default: true,Prev/Next Arrows,
-	 * @centerMode, boolean	false,Enables centered view with partial prev/next slides. Use with odd numbered slidesToShow counts.
-	 * @centerPadding,int 50,Side padding when in center mode
+     * @centerMode, boolean	false,Enables centered view with partial prev/next slides. Use with odd numbered slidesToShow counts.
+     * @centerPadding,int 50,Side padding when in center mode
      * @cssEase,string, default: 'ease',CSS3 Animation Easing,
      * @dots,boolean, default: false,Show dot indicators,
      * @draggable,boolean, default: true,Enable mouse dragging,
      * @fade,boolean, default: false,Enable fade,
      * @easing,string, default: 'linear',Add easing for jQuery animate. Use with easing libraries or default easing methods,
      * @infinite,,boolean, default: true,Infinite loop sliding,
-	 * @lazyLoad,string	'ondemand',Set lazy loading technique. Accepts 'ondemand' or 'progressive'.
+     * @lazyLoad,string	'ondemand',Set lazy loading technique. Accepts 'ondemand' or 'progressive'.
      * @onBeforeChange,function, default: null,Before slide callback,
      * @onAfterChange,function, default: null,After slide callback,
-	 * @onInit,function	null,Callback that fires after first initialization
-	 * @onReInit,function	null,Callback that fires after every re-initialization
+     * @onInit,function	null,Callback that fires after first initialization
+     * @onReInit,function	null,Callback that fires after every re-initialization
      * @pauseOnHover,boolean, default: true,Pause Autoplay On Hover,
      * @placeholders,,boolean, default: true,,Enable placeholders to enforce slidesToScroll with uneven
      * slide counts. (Doesn't work with infinite: true),
@@ -72,32 +73,45 @@ class SlickWidget extends Widget{
 
     public function init()
     {
-
+        ob_start();
+        ob_implicit_flush(false);
     }
 
     public function run()
     {
-        return $this->registerSlickJs();
+        $this->registerSlickJs();
+        $content = ob_get_clean();
+        echo Html::tag('div', $content, ArrayHelper::merge([
+            'id' => $this->id,
+        ], $this->htmlOptions));
     }
 
     private function registerSlickJs(){
-        $jQueryContainer = "$('{$this->container}')";
+        $id = $this->id;
         SlickAssets::register($this->view);
 
-        if(!empty($this->settings)){
-            $var = uniqid('$container');
-            $query = "var {$var} =  {$jQueryContainer};".PHP_EOL;
+        $slick = '$("#' . $id . '")';
 
-            foreach($this->settings as $method => $settings){
+        if (!empty($this->settings)) {
+            foreach ($this->settings as $method => $settings) {
                 $opt = Json::encode($settings);
-                if(!is_null($settings))
-                    $query .= "{$var}.{$method}({$opt});".PHP_EOL;
-                else
-                    $query .= "{$var}.{$method}();".PHP_EOL;
+                if (!is_null($settings)) {
+                    $slick .= ".{$method}({$opt})";
+                } else {
+                    $slick .= ".{$method}()";
+                }
             }
-
-            return $this->view->registerJs($query,View::POS_READY);
+        } else {
+            $slick .='.slick();';
         }
-        return $this->view->registerJs($jQueryContainer.".slick()",View::POS_READY);
+
+        $this->view->registerJs(<<<JS
+    ;(function ($) {
+        {$slick}
+    })(jQuery);
+JS
+            ,
+            View::POS_READY
+        );
     }
-} 
+}

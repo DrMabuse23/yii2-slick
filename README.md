@@ -5,20 +5,18 @@ yii2-slick
 
 The yii2 widget to the fantastic slick-carousel. This widget generate you the only the javascript.
 
-###Installation Composer
+### Installation Composer
     drmabuse/yii2-slick-carousel:"*"
 
-### Installation Assets Bower
-    cd vendor/drmabuse/yii2-slick-carousel/web
+### Using
 
-    bower install
+```php
 
-###Using
-
-~~~
-
-	\drmabuse\slick\SlickWidget::widget([
-		'container' => '.single-item',
+    <?php
+	\drmabuse\slick\SlickWidget::begin([
+	    'htmlOptions' => [
+	        'class' => ['slider', 'single-item'],
+	    ],
 		'settings'  => [
 			'slick' => [
 				'infinite'      =>  true,
@@ -44,13 +42,16 @@ The yii2 widget to the fantastic slick-carousel. This widget generate you the on
 		]
 	]);
 
-    <div class="slider single-item">
-        <div><h3>1</h3></div>
-        <div><h3>2</h3></div>
-        <div><h3>3</h3></div>
-        <div><h3>4</h3></div>
-        <div><h3>5</h3></div>
-        <div><h3>6</h3></div>
-    </div>
-
-~~~
+    ?>
+    
+    <div><h3>1</h3></div>
+    <div><h3>2</h3></div>
+    <div><h3>3</h3></div>
+    <div><h3>4</h3></div>
+    <div><h3>5</h3></div>
+    <div><h3>6</h3></div>
+    
+    <?php 
+    \drmabuse\slick\SlickWidget::end();
+    ?>
+```
